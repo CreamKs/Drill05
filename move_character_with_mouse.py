@@ -33,7 +33,10 @@ while running:
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     hand.draw(hx, hy)
     move_character(hx,hy)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    if x < hx:
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    elif x >= hx:
+        character.clip_composite_draw((8 - frame) * 100, 100 * 1, 100, 100, 0, 'h', x, y, 100, 100)
     if hx - 1 <= x and x <= hx + 1 and hy - 1 <= y and y <= hy + 1:
         hx, hy = random.randint(0, TUK_WIDTH), random.randint(0, TUK_HEIGHT)
     update_canvas()
